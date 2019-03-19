@@ -73,8 +73,12 @@ RUN pip3 install -r $BASE_DIR/esp-idf/requirements.txt
 RUN cd $BASE_DIR && git clone --recursive https://github.com/espressif/crosstool-NG.git
 RUN cd $BASE_DIR/crosstool-NG && git submodule update --init
 
+# Create fixed targets for built firmware
+RUN ln -s micropython/ports/esp32/build/firmware.bin $BASE_DIR/firmware-esp32.bin
+RUN ln -s micropython/ports/esp8266/build/firmware-combined.bin $BASE_DIR/firmware-esp8266.bin
+
 # Set perms to compilation user
-RUN chown -R micropython:micropython $BASE_DIR/micropython $BASE_DIR/esp-open-sdk $BASE_DIR/esp-idf $BASE_DIR/crosstool-NG
+RUN chown -R micropython:micropython $BASE_DIR
 
 # Switch to compilation user context
 USER micropython

@@ -3,6 +3,7 @@
 function check () {
   if [[ ! $1 ]]; then
     echo "No ARCH param provided!";
+    echo "Usage: $0 <esp32|esp8266>"
     exit 1
   fi
 }
@@ -16,14 +17,10 @@ function run () {
   docker run \
     --rm \
     -it \
-    \
-    -v $(pwd)/../micropython:/build/micropython \
-    \
-    -v $(pwd)/modules-$arch:/build/micropython/ports/$arch/modules \
     -v $(pwd)/../../app/extlib:/build/micropython/ports/$arch/modules/extlib \
     -v $(pwd)/../../app/fonts:/build/micropython/ports/$arch/modules/fonts \
     -v $(pwd)/../../app/utils:/build/micropython/ports/$arch/modules/utils \
-    \
+    -v $(pwd)/../micropython/ports/esp8266/esp8266.ld:/build/micropython/ports/esp8266/esp8266.ld \
     --user root \
     --workdir /build/micropython/ports/$arch \
     micropython  \
