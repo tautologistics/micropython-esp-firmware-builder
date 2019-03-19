@@ -17,9 +17,7 @@ function run () {
   docker run \
     --rm \
     -it \
-    -v $(pwd)/../../app/extlib:/build/micropython/ports/$arch/modules/extlib \
-    -v $(pwd)/../../app/fonts:/build/micropython/ports/$arch/modules/fonts \
-    -v $(pwd)/../../app/utils:/build/micropython/ports/$arch/modules/utils \
+    -v $(pwd)../micropython-app/mylib:/build/micropython/ports/$arch/modules/mylib \
     --user root \
     --workdir /build/micropython/ports/$arch \
     micropython  \
