@@ -20,7 +20,6 @@ function run () {
     -v $(pwd)/../../app/extlib:/build/micropython/ports/$arch/modules/extlib \
     -v $(pwd)/../../app/fonts:/build/micropython/ports/$arch/modules/fonts \
     -v $(pwd)/../../app/utils:/build/micropython/ports/$arch/modules/utils \
-    -v $(pwd)/../micropython/ports/esp8266/esp8266.ld:/build/micropython/ports/esp8266/esp8266.ld \
     --user root \
     --workdir /build/micropython/ports/$arch \
     micropython  \
